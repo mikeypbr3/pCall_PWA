@@ -2,7 +2,7 @@
     "name": "Children's Transport Patient Care Protocols",
     "short_name": "Transport Protocols",
     "description": "Patient care protocols for children's transport",
-    "start_url": "/index.html",
+    "start_url": "./",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#007bff",
