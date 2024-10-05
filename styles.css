@@ -11,9 +11,15 @@ h1 {
 
 #pdf-viewer {
     width: 100%;
-    height: 80vh;
-    border: 1px solid #ccc;
-    margin-top: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#pdf-viewer canvas {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 #install-btn {

@@ -3,23 +3,33 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs
 
 // Load and display PDF
 pdfjsLib.getDocument('protocol.pdf').promise.then(function(pdf) {
-    return pdf.getPage(1);
-}).then(function(page) {
-    var scale = 1.5;
-    var viewport = page.getViewport({scale: scale});
+    const pdfViewer = document.getElementById('pdf-viewer');
+    
+    // Function to render a page
+    function renderPage(pageNumber) {
+        pdf.getPage(pageNumber).then(function(page) {
+            const scale = 1.5;
+            const viewport = page.getViewport({scale: scale});
 
-    var canvas = document.createElement('canvas');
-    var context = canvas.getContext('2d');
-    canvas.height = viewport.height;
-    canvas.width = viewport.width;
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
 
-    var renderContext = {
-        canvasContext: context,
-        viewport: viewport
-    };
+            const renderContext = {
+                canvasContext: context,
+                viewport: viewport
+            };
 
-    document.getElementById('pdf-viewer').appendChild(canvas);
-    page.render(renderContext);
+            pdfViewer.appendChild(canvas);
+            page.render(renderContext);
+        });
+    }
+
+    // Render all pages
+    for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
+        renderPage(pageNumber);
+    }
 });
 
 // PWA installation
